@@ -1,0 +1,486 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xmeml>
+<xmeml version="4">
+	<sequence id="sequence-1" TL.SQAudioVisibleBase="0" TL.SQVideoVisibleBase="0" TL.SQVisibleBaseTime="0" TL.SQAVDividerPosition="0.5" TL.SQHideShyTracks="0" TL.SQHeaderWidth="236" TL.SQDataTrackViewControlState="0" Monitor.ProgramZoomOut="34292160000000" Monitor.ProgramZoomIn="0" TL.SQTimePerPixel="0.39999999998616498" MZ.EditLine="0" MZ.Sequence.PreviewFrameSizeHeight="1080" MZ.Sequence.PreviewFrameSizeWidth="1920" MZ.Sequence.AudioTimeDisplayFormat="200" MZ.Sequence.PreviewRenderingPresetCodec="1297107278" MZ.Sequence.PreviewRenderingPresetPath="EncoderPresets/SequencePreview/795454d9-d3c2-429d-9474-923ab13b7018/I-Frame Only MPEG.epr" MZ.Sequence.PreviewUseMaxRenderQuality="false" MZ.Sequence.PreviewUseMaxBitDepth="false" MZ.Sequence.EditingModeGUID="795454d9-d3c2-429d-9474-923ab13b7018" MZ.Sequence.VideoTimeDisplayFormat="101" MZ.WorkOutPoint="34292160000000" MZ.WorkInPoint="0" MZ.ZeroPoint="0" explodedTracks="true">
+		<uuid>dc205209-3e4f-4d09-994f-a31bf8cbb503</uuid>
+		<duration>3375</duration>
+		<rate>
+			<timebase>25</timebase>
+			<ntsc>FALSE</ntsc>
+		</rate>
+		<name>唱词安全框_Sub_01</name>
+		<media>
+			<video>
+				<format>
+					<samplecharacteristics>
+						<rate>
+							<timebase>25</timebase>
+							<ntsc>FALSE</ntsc>
+						</rate>
+						<codec>
+							<name>Apple ProRes 422</name>
+							<appspecificdata>
+								<appname>Final Cut Pro</appname>
+								<appmanufacturer>Apple Inc.</appmanufacturer>
+								<appversion>7.0</appversion>
+								<data>
+									<qtcodec>
+										<codecname>Apple ProRes 422</codecname>
+										<codectypename>Apple ProRes 422</codectypename>
+										<codectypecode>apcn</codectypecode>
+										<codecvendorcode>appl</codecvendorcode>
+										<spatialquality>1024</spatialquality>
+										<temporalquality>0</temporalquality>
+										<keyframerate>0</keyframerate>
+										<datarate>0</datarate>
+									</qtcodec>
+								</data>
+							</appspecificdata>
+						</codec>
+						<width>1920</width>
+						<height>1080</height>
+						<anamorphic>FALSE</anamorphic>
+						<pixelaspectratio>square</pixelaspectratio>
+						<fielddominance>none</fielddominance>
+						<colordepth>24</colordepth>
+					</samplecharacteristics>
+				</format>
+				<track TL.SQTrackShy="0" TL.SQTrackExpandedHeight="25" TL.SQTrackExpanded="0" MZ.TrackTargeted="0" MZ.TrackName="视频 3">
+					<clipitem id="clipitem-1">
+						<masterclipid>masterclip-1</masterclipid>
+						<name>唱词位置参考</name>
+						<enabled>TRUE</enabled>
+						<duration>1080000</duration>
+						<rate>
+							<timebase>25</timebase>
+							<ntsc>FALSE</ntsc>
+						</rate>
+						<start>0</start>
+						<end>3375</end>
+						<in>1625</in>
+						<out>5000</out>
+						<pproTicksIn>16511040000000</pproTicksIn>
+						<pproTicksOut>50803200000000</pproTicksOut>
+						<alphatype>straight</alphatype>
+						<pixelaspectratio>square</pixelaspectratio>
+						<anamorphic>FALSE</anamorphic>
+						<file id="file-1">
+							<name>Graphic</name>
+							<mediaSource>GraphicAndType</mediaSource>
+							<rate>
+								<timebase>30</timebase>
+								<ntsc>TRUE</ntsc>
+							</rate>
+							<timecode>
+								<rate>
+									<timebase>30</timebase>
+									<ntsc>TRUE</ntsc>
+								</rate>
+								<string>01;00;00;00</string>
+								<frame>107892</frame>
+								<displayformat>DF</displayformat>
+							</timecode>
+							<media>
+								<video>
+									<samplecharacteristics>
+										<rate>
+											<timebase>30</timebase>
+											<ntsc>TRUE</ntsc>
+										</rate>
+										<width>1920</width>
+										<height>1080</height>
+										<anamorphic>FALSE</anamorphic>
+										<pixelaspectratio>square</pixelaspectratio>
+										<fielddominance>none</fielddominance>
+									</samplecharacteristics>
+								</video>
+							</media>
+						</file>
+						<filter>
+							<effect>
+								<name>Basic Motion</name>
+								<effectid>basic</effectid>
+								<effectcategory>motion</effectcategory>
+								<effecttype>motion</effecttype>
+								<mediatype>video</mediatype>
+								<pproBypass>false</pproBypass>
+								<parameter authoringApp="PremierePro">
+									<parameterid>scale</parameterid>
+									<name>Scale</name>
+									<valuemin>0</valuemin>
+									<valuemax>1000</valuemax>
+									<value>100</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>rotation</parameterid>
+									<name>Rotation</name>
+									<valuemin>-8640</valuemin>
+									<valuemax>8640</valuemax>
+									<value>0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>center</parameterid>
+									<name>Center</name>
+									<value>
+										<horiz>-0.00520834</horiz>
+										<vert>0</vert>
+									</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>centerOffset</parameterid>
+									<name>Anchor Point</name>
+									<value>
+										<horiz>0</horiz>
+										<vert>0</vert>
+									</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>antiflicker</parameterid>
+									<name>Anti-flicker Filter</name>
+									<valuemin>0.0</valuemin>
+									<valuemax>1.0</valuemax>
+									<value>0</value>
+								</parameter>
+							</effect>
+						</filter>
+						<filter>
+							<effect>
+								<name>Vector Motion</name>
+								<effectid>GraphicGroup</effectid>
+								<effectcategory>graphic</effectcategory>
+								<effecttype>filter</effecttype>
+								<mediatype>video</mediatype>
+								<pproBypass>false</pproBypass>
+								<parameter authoringApp="PremierePro">
+									<parameterid>1</parameterid>
+									<name>位置</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<value>-91445760000000000,0.56302082538604736:0.94824069738388062,0,0,0,0,0,0,5,4,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>2</parameterid>
+									<name>缩放</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>2</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>10000</UpperBound>
+									<UpperUIBound>200</UpperUIBound>
+									<value>-91445760000000000,100.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>3</parameterid>
+									<name>缩放宽度</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>2</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>10000</UpperBound>
+									<UpperUIBound>200</UpperUIBound>
+									<value>-91445760000000000,100.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>4</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>4</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>true</UpperBound>
+									<value>-91445760000000000,true,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>5</parameterid>
+									<name>旋转</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>3</ParameterControlType>
+									<LowerBound>-32768</LowerBound>
+									<UpperBound>32767</UpperBound>
+									<value>-91445760000000000,0.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>6</parameterid>
+									<name>锚点</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<value>-91445760000000000,0.5:0.5,0,0,0,0,0,0,5,4,0,0,0,0</value>
+								</parameter>
+							</effect>
+						</filter>
+						<filter>
+							<effect>
+								<name>我是总台节目主持人撒贝宁&#13;</name>
+								<effectid>GraphicAndType</effectid>
+								<effectcategory>graphic</effectcategory>
+								<effecttype>filter</effecttype>
+								<mediatype>video</mediatype>
+								<pproBypass>false</pproBypass>
+								<parameter authoringApp="PremierePro">
+									<parameterid>1</parameterid>
+									<name>源文本</name>
+									<hash>1a631507-c993-0385-1fab-7e6300000268</hash>
+									<value>UAIAAAAAAABEMyIRFAAAAAAADgAMAAQACwAAAAAACgAOAAAAZAAAAAAAAQFcAEIAEAAMADwAOAA0AAAAAAAwAAAAAAAsACsAJAAAACAAHAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAsAAAAEAAAAAAAXAFwAAABIAAAAAAAAAeAAAAAAAQAAAAAAAAAAcEEElnQ/AACAQAAAukIAAAABuAAAAAAAAAACAAAAAABAQwAAwEQAAAoADAAAAAgABAAKAAAACAAAADwAAAACAAAALAAAABAAAAAAAAoADgAAAAQACAAKAAAAAACAPwAAAD8AAAoACAAAAAAABAAKAAAAAAAAPwIAAAA0AAAAEAAAAAAACgAQAAQACAAMAAoAAAAMAAAAAACAPwAAAD80////AAAKAAwABAAAAAgACgAAAAgAAAAAAAA/Rv///wBEAQE8////QP///1b///8ANwYGAQAAAAQAAAAUAAAATWFvS2VuV2FuZ0ZlbmdZYVNvbmcAAAAAAQAAAAwAAAAIAAwABAAIAAgAAACEAAAAOAAAADQAIAAAABwAAAAAABgAAAAUAAAAEAAAAAAADwAAAAAAAAAAAAAAAAAAAAAAAAAIAAAABAA0AAAAHAAAACAAAAAAAAAAAABIQgAAAEAgAAAAAABgQuD///8EAAYABAAAAAAACgAIAAUABgAHAAoAAAAANDVJBAAEAAQAAAAlAAAA5oiR5piv5oC75Y+w6IqC55uu5Li75oyB5Lq65pKS6LSd5a6BDQAAAA==</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>2</parameterid>
+									<name>变换</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>11</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>false</UpperBound>
+									<value>-91445760000000000,false,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>3</parameterid>
+									<name>位置</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<value>-91445760000000000,0.0601043701171875:0.4118819534778595,0,0,0,0,0,0,5,4,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>4</parameterid>
+									<name>缩放</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>2</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>4000</UpperBound>
+									<value>-91445760000000000,100.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>5</parameterid>
+									<name>水平缩放</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>2</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>4000</UpperBound>
+									<value>-91445760000000000,100.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>6</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>4</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>true</UpperBound>
+									<value>-91445760000000000,true,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>7</parameterid>
+									<name>旋转</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>3</ParameterControlType>
+									<LowerBound>-32768</LowerBound>
+									<UpperBound>32767</UpperBound>
+									<value>-91445760000000000,0.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>8</parameterid>
+									<name>不透明度</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>2</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>100</UpperBound>
+									<value>-91445760000000000,100.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>9</parameterid>
+									<name>锚点</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<value>-91445760000000000,0:0,0,0,0,0,0,0,5,4,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>10</parameterid>
+									<name></name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>12</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>false</UpperBound>
+									<value>-91445760000000000,false,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>11</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>8</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>32768</UpperBound>
+									<value>-91445760000000000,0.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>12</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>8</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>32768</UpperBound>
+									<value>-91445760000000000,0.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>13</parameterid>
+									<name>start</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>8</ParameterControlType>
+									<LowerBound>-100</LowerBound>
+									<UpperBound>1000000000</UpperBound>
+									<value>-91445760000000000,-1.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>14</parameterid>
+									<name>end</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>8</ParameterControlType>
+									<LowerBound>-100</LowerBound>
+									<UpperBound>1000000000</UpperBound>
+									<value>-91445760000000000,-1.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>15</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>4</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>true</UpperBound>
+									<value>-91445760000000000,false,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>16</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>4</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>true</UpperBound>
+									<value>-91445760000000000,false,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>17</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>4</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>true</UpperBound>
+									<value>-91445760000000000,false,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>18</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>4</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>true</UpperBound>
+									<value>-91445760000000000,false,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>19</parameterid>
+									<name>父级宽度</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>2</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>20000</UpperBound>
+									<value>-91445760000000000,0.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>20</parameterid>
+									<name>父级高度</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>2</ParameterControlType>
+									<LowerBound>0</LowerBound>
+									<UpperBound>20000</UpperBound>
+									<value>-91445760000000000,0.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>21</parameterid>
+									<name>父级旋转</name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>3</ParameterControlType>
+									<LowerBound>-32768</LowerBound>
+									<UpperBound>32767</UpperBound>
+									<value>-91445760000000000,0.,0,0,0,0,0,0</value>
+								</parameter>
+								<parameter authoringApp="PremierePro">
+									<parameterid>22</parameterid>
+									<name> </name>
+									<IsTimeVarying>false</IsTimeVarying>
+									<ParameterControlType>4</ParameterControlType>
+									<LowerBound>false</LowerBound>
+									<UpperBound>true</UpperBound>
+									<value>-91445760000000000,false,0,0,0,0,0,0</value>
+								</parameter>
+							</effect>
+						</filter>
+						<logginginfo>
+							<description></description>
+							<scene></scene>
+							<shottake></shottake>
+							<lognote></lognote>
+							<good></good>
+							<originalvideofilename></originalvideofilename>
+							<originalaudiofilename></originalaudiofilename>
+						</logginginfo>
+						<colorinfo>
+							<lut></lut>
+							<lut1></lut1>
+							<asc_sop></asc_sop>
+							<asc_sat></asc_sat>
+							<lut2></lut2>
+						</colorinfo>
+					</clipitem>
+					<enabled>TRUE</enabled>
+					<locked>FALSE</locked>
+				</track>
+			</video>
+			<audio>
+				<numOutputChannels>2</numOutputChannels>
+				<format>
+					<samplecharacteristics>
+						<depth>16</depth>
+						<samplerate>48000</samplerate>
+					</samplecharacteristics>
+				</format>
+				<outputs>
+					<group>
+						<index>1</index>
+						<numchannels>1</numchannels>
+						<downmix>0</downmix>
+						<channel>
+							<index>1</index>
+						</channel>
+					</group>
+					<group>
+						<index>2</index>
+						<numchannels>1</numchannels>
+						<downmix>0</downmix>
+						<channel>
+							<index>2</index>
+						</channel>
+					</group>
+				</outputs>
+				<track TL.SQTrackAudioKeyframeStyle="0" TL.SQTrackShy="0" TL.SQTrackExpandedHeight="25" TL.SQTrackExpanded="0" MZ.TrackTargeted="1" MZ.TrackName="音频 1" PannerCurrentValue="0.5" PannerIsInverted="true" PannerStartKeyframe="-91445760000000000,0.5,0,0,0,0,0,0" PannerName="平衡" currentExplodedTrackIndex="0" totalExplodedTrackCount="2" premiereTrackType="Stereo">
+					<enabled>TRUE</enabled>
+					<locked>FALSE</locked>
+					<outputchannelindex>1</outputchannelindex>
+				</track>
+				<track TL.SQTrackAudioKeyframeStyle="0" TL.SQTrackShy="0" TL.SQTrackExpandedHeight="25" TL.SQTrackExpanded="0" MZ.TrackTargeted="1" MZ.TrackName="音频 1" PannerCurrentValue="0.5" PannerIsInverted="true" PannerStartKeyframe="-91445760000000000,0.5,0,0,0,0,0,0" PannerName="平衡" currentExplodedTrackIndex="1" totalExplodedTrackCount="2" premiereTrackType="Stereo">
+					<enabled>TRUE</enabled>
+					<locked>FALSE</locked>
+					<outputchannelindex>2</outputchannelindex>
+				</track>
+			</audio>
+		</media>
+		<timecode>
+			<rate>
+				<timebase>25</timebase>
+				<ntsc>FALSE</ntsc>
+			</rate>
+			<string>00:00:00:00</string>
+			<frame>0</frame>
+			<displayformat>NDF</displayformat>
+		</timecode>
+		<labels>
+			<label2>Forest</label2>
+		</labels>
+		<logginginfo>
+			<description></description>
+			<scene></scene>
+			<shottake></shottake>
+			<lognote></lognote>
+			<good></good>
+			<originalvideofilename></originalvideofilename>
+			<originalaudiofilename></originalaudiofilename>
+		</logginginfo>
+	</sequence>
+</xmeml>
