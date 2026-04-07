@@ -1,4 +1,4 @@
-# PyQt Premiere Subtitle XML Converter
+# srt_to_xml
 
 将 SRT 字幕批量转换为套用 Premiere 样式模板的 `xmeml` XML。
 
@@ -15,18 +15,27 @@
 
 ## 环境要求
 
-- Python 3.12 或兼容版本
-- Linux、macOS 或 Windows
+- macOS 13 或更高版本
+- Apple Silicon Mac
+- Homebrew `python@3.12`
 - Adobe Premiere Pro 可导入的 `xmeml` 样式模板文件
 
-## 安装
+## 本地开发安装
 
 ```bash
-python3 -m venv .venv
-.venv/bin/pip install -r requirements.txt
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements.txt -r requirements-build.txt
 ```
 
-## 运行
+如果系统里还没有 `python3.12`，先执行：
+
+```bash
+brew install python@3.12
+```
+
+构建脚本也支持一个仓库内的备用运行时路径：`.tools/python312/Python.framework`。这主要用于系统级安装受限的情况。
+
+## 源码运行
 
 ```bash
 .venv/bin/python main.py
@@ -53,9 +62,71 @@ python3 -m venv .venv
 ## 测试
 
 ```bash
-.venv/bin/python -m pytest
+.venv/bin/pytest
 ```
+
+## 构建 macOS App
+
+项目内置了完整的图标生成和 PyInstaller 打包脚本。执行下面的命令会自动完成：
+
+- 检查 `python3.12`
+- 创建或复用 `.venv`
+- 安装运行依赖和打包依赖
+- 运行测试
+- 生成 `assets/macos/srt_to_xml.png`
+- 生成 `assets/macos/srt_to_xml.icns`
+- 输出 `dist/srt_to_xml.app`
+
+```bash
+./scripts/build_macos_app.sh
+```
+
+如果你希望显式分步执行，也可以使用：
+
+```bash
+python3.12 -m venv .venv
+.venv/bin/pip install -r requirements.txt -r requirements-build.txt
+.venv/bin/pytest
+.venv/bin/python scripts/generate_icon.py
+.venv/bin/pyinstaller srt_to_xml.spec --noconfirm --clean
+```
+
+## 产物说明
+
+- 交付物是 `dist/srt_to_xml.app`
+- 这是一个自包含的 macOS 应用包，目标 Mac 不需要额外安装 Python、PyQt5、lxml 或 srt
+- 当前构建目标仅覆盖 Apple Silicon 机器，不兼容 Intel Mac
+
+## 复制到另一台 Mac 的注意事项
+
+- 请复制整个 `srt_to_xml.app`，不要只复制包内的单个可执行文件
+- 目标机器建议不低于当前构建机的 macOS 版本
+- 如果目标机器从网络、聊天工具或浏览器下载了应用，macOS 可能会附加 quarantine 标记
+
+首次打开未签名应用时，可按下面的方式处理：
+
+1. 在 Finder 中右键 `srt_to_xml.app`
+2. 选择“打开”
+3. 在系统弹窗中再次确认打开
+
+在受信任的内部环境中，也可以移除 quarantine：
+
+```bash
+xattr -dr com.apple.quarantine dist/srt_to_xml.app
+```
+
+## 签名与公证
+
+当前仓库已经预留好应用图标、Bundle Identifier 和 PyInstaller app bundle 结构，但默认不执行签名、公证和 stapling。
+
+后续如果要面向外部分发，需要补齐：
+
+- Apple Developer 账号
+- `Developer ID Application` 证书
+- `xcrun notarytool` 凭据
+
+完成这些前置条件后，再为 `dist/srt_to_xml.app` 增加签名、公证和分发容器即可。
 
 ## 发布说明
 
-首个公开版本的变更记录见 [CHANGELOG.md](./CHANGELOG.md)。
+当前版本号沿用 `0.1.0`。历史变更记录见 [CHANGELOG.md](./CHANGELOG.md)。
