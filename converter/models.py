@@ -1,4 +1,8 @@
+from __future__ import annotations
+
 from dataclasses import dataclass
+
+import lxml.etree as etree
 
 
 @dataclass(frozen=True)
@@ -10,8 +14,8 @@ class SubtitleCue:
 
 @dataclass(frozen=True)
 class TemplatePrototype:
-    track_node: object
-    clipitem_node: object
+    track_node: etree._Element
+    clipitem_node: etree._Element
     fps: float
     ntsc: bool
     ticks_per_frame: int

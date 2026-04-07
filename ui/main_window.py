@@ -21,16 +21,16 @@ from .file_drop_zone import FileDropZone
 
 
 class MainWindow(QMainWindow):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
-        self.conversion_service = ConversionService()
-        self.settings = QSettings("Codex", "PremiereSubtitleXmlConverter")
+        self.conversion_service: ConversionService = ConversionService()
+        self.settings: QSettings = QSettings("Codex", "PremiereSubtitleXmlConverter")
         self._build_ui()
         self._restore_recent_files()
         if not self.log_view.toPlainText().strip():
             self._append_log("等待载入 XML 模板和 SRT 字幕文件。")
 
-    def _build_ui(self):
+    def _build_ui(self) -> None:
         self.setWindowTitle("Premiere 字幕 XML 转换器")
         self.setFixedSize(920, 680)
         self.setStyleSheet(
@@ -127,20 +127,20 @@ class MainWindow(QMainWindow):
         button_row.addStretch()
         outer_layout.addLayout(button_row)
 
-    def _refresh_convert_button(self):
+    def _refresh_convert_button(self) -> None:
         self.convert_button.setEnabled(self.xml_zone.is_valid() and self.srt_zone.is_valid())
 
-    def _on_xml_selected(self, path: str):
+    def _on_xml_selected(self, path: str) -> None:
         self.settings.setValue("recent/template_path", path)
         self._append_log(f"已载入 XML 模板：{path}")
         self._refresh_convert_button()
 
-    def _on_srt_selected(self, path: str):
+    def _on_srt_selected(self, path: str) -> None:
         self.settings.setValue("recent/srt_path", path)
         self._append_log(f"已载入 SRT 字幕：{path}")
         self._refresh_convert_button()
 
-    def _select_output_and_convert(self):
+    def _select_output_and_convert(self) -> None:
         if not (self.xml_zone.is_valid() and self.srt_zone.is_valid()):
             QMessageBox.warning(self, "提示", "请先载入 XML 模板文件和 SRT 字幕文件。")
             return
@@ -210,7 +210,7 @@ class MainWindow(QMainWindow):
             f"已生成 {result.clip_count} 条字幕。\n输出文件：\n{result.output_path}",
         )
 
-    def _restore_recent_files(self):
+    def _restore_recent_files(self) -> None:
         restored_any = False
         template_path = self.settings.value("recent/template_path", "", type=str)
         srt_path = self.settings.value("recent/srt_path", "", type=str)
@@ -238,7 +238,7 @@ class MainWindow(QMainWindow):
             return value
         return self._recent_output_dir()
 
-    def _append_log(self, message: str):
+    def _append_log(self, message: str) -> None:
         current_text = self.log_view.toPlainText().strip()
         combined = f"{current_text}\n\n{message}".strip() if current_text else message
         self.log_view.setPlainText(combined)

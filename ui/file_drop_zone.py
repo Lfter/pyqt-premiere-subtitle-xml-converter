@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Callable
 
 from PyQt5.QtCore import Qt, pyqtSignal
-from PyQt5.QtWidgets import QFileDialog, QFrame, QLabel, QVBoxLayout
+from PyQt5.QtGui import QDragEnterEvent, QDragLeaveEvent, QDropEvent, QMouseEvent
+from PyQt5.QtWidgets import QFileDialog, QFrame, QLabel, QVBoxLayout, QWidget
 
 
 class FileDropZone(QFrame):
@@ -14,9 +16,9 @@ class FileDropZone(QFrame):
         title: str,
         extensions: tuple[str, ...],
         dialog_filter: str,
-        directory_provider=None,
-        parent=None,
-    ):
+        directory_provider: Callable[[], str] | None = None,
+        parent: QWidget | None = None,
+    ) -> None:
         super().__init__(parent)
         self.title = title
         self.extensions = tuple(extension.lower() for extension in extensions)
@@ -25,7 +27,7 @@ class FileDropZone(QFrame):
         self.file_path = ""
         self._build_ui()
 
-    def _build_ui(self):
+    def _build_ui(self) -> None:
         self.setAcceptDrops(True)
         self.setCursor(Qt.PointingHandCursor)
         self.setFixedSize(320, 220)
@@ -74,33 +76,33 @@ class FileDropZone(QFrame):
     def is_valid(self) -> bool:
         return bool(self.file_path and self._matches_extension(self.file_path))
 
-    def mousePressEvent(self, event):
-        if event.button() == Qt.LeftButton:
+    def mousePressEvent(self, a0: QMouseEvent) -> None:
+        if a0.button() == Qt.LeftButton:
             self._open_file_dialog()
-        super().mousePressEvent(event)
+        super().mousePressEvent(a0)
 
-    def dragEnterEvent(self, event):
-        urls = event.mimeData().urls()
+    def dragEnterEvent(self, a0: QDragEnterEvent) -> None:
+        urls = a0.mimeData().urls()
         if any(url.isLocalFile() and self._matches_extension(url.toLocalFile()) for url in urls):
             self._apply_style(active=True, drag_over=True)
-            event.acceptProposedAction()
+            a0.acceptProposedAction()
             return
-        event.ignore()
+        a0.ignore()
 
-    def dragLeaveEvent(self, event):
+    def dragLeaveEvent(self, a0: QDragLeaveEvent) -> None:
         self._apply_style(active=self.is_valid())
-        super().dragLeaveEvent(event)
+        super().dragLeaveEvent(a0)
 
-    def dropEvent(self, event):
-        for url in event.mimeData().urls():
+    def dropEvent(self, a0: QDropEvent) -> None:
+        for url in a0.mimeData().urls():
             if not url.isLocalFile():
                 continue
             if self.set_file(url.toLocalFile()):
-                event.acceptProposedAction()
+                a0.acceptProposedAction()
                 return
-        event.ignore()
+        a0.ignore()
 
-    def _open_file_dialog(self):
+    def _open_file_dialog(self) -> None:
         initial_path = ""
         if callable(self.directory_provider):
             initial_path = self.directory_provider() or ""

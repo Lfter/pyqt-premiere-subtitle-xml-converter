@@ -6,7 +6,7 @@ from decimal import Decimal, ROUND_CEILING, ROUND_FLOOR
 from pathlib import Path
 from typing import Iterable
 
-from lxml import etree
+import lxml.etree as etree
 import srt
 
 from .errors import ConversionError
@@ -58,7 +58,7 @@ class ConversionService:
             preview_lines=tuple(cue.text for cue in subtitles[:3]),
         )
 
-    def _load_template_tree(self, template_xml_path: str):
+    def _load_template_tree(self, template_xml_path: str) -> etree._ElementTree:
         try:
             parser = etree.XMLParser(remove_blank_text=False, recover=False)
             tree = etree.parse(template_xml_path, parser)
@@ -106,8 +106,10 @@ class ConversionService:
 
         return cues
 
-    def _find_template_prototype(self, tree) -> TemplatePrototype:
+    def _find_template_prototype(self, tree: etree._ElementTree) -> TemplatePrototype:
         sequence = tree.getroot().find("./sequence")
+        if sequence is None:
+            raise ConversionError("XML 模板中缺少 sequence 节点。")
         rate_node = sequence.find("./rate")
         if rate_node is None:
             raise ConversionError("XML 模板缺少 sequence/rate 帧率信息。")
@@ -121,7 +123,7 @@ class ConversionService:
         ntsc = ntsc_text == "TRUE"
         fps = timebase * 1000 / 1001 if ntsc else float(timebase)
 
-        candidates = []
+        candidates: list[tuple[etree._Element, etree._Element, str]] = []
         for track in sequence.findall("./media/video/track"):
             for clipitem in track.findall("./clipitem"):
                 text_param_name = self._find_text_parameter_name(clipitem)
@@ -144,7 +146,7 @@ class ConversionService:
             text_param_name=text_param_name,
         )
 
-    def _find_text_parameter_name(self, clipitem_node) -> str | None:
+    def _find_text_parameter_name(self, clipitem_node: etree._Element) -> str | None:
         for effect in clipitem_node.findall("./filter/effect"):
             effect_id = (effect.findtext("effectid") or "").strip()
             if effect_id != "GraphicAndType":
@@ -155,7 +157,13 @@ class ConversionService:
                     return parameter_name
         return None
 
-    def _infer_ticks_per_frame(self, clipitem_node, fps: float, ntsc: bool, timebase: int) -> int:
+    def _infer_ticks_per_frame(
+        self,
+        clipitem_node: etree._Element,
+        _fps: float,
+        ntsc: bool,
+        timebase: int,
+    ) -> int:
         clip_in = self._safe_int(clipitem_node.findtext("in"))
         clip_out = self._safe_int(clipitem_node.findtext("out"))
         ppro_ticks_in = self._safe_int(clipitem_node.findtext("pproTicksIn"))
@@ -169,7 +177,7 @@ class ConversionService:
         fps_decimal = Decimal(timebase) * (Decimal("1000") / Decimal("1001") if ntsc else Decimal(1))
         return int((Decimal(PREMIERE_TICKS_PER_SECOND) / fps_decimal).to_integral_value())
 
-    def _build_id_allocator(self, tree) -> IdAllocator:
+    def _build_id_allocator(self, tree: etree._ElementTree) -> IdAllocator:
         clipitem_ids = [node.get("id", "") for node in tree.findall(".//clipitem")]
         masterclip_ids = [node.text or "" for node in tree.findall(".//masterclipid")]
         file_ids = [node.get("id", "") for node in tree.findall(".//file")]
@@ -191,7 +199,12 @@ class ConversionService:
                 continue
         return max_number + 1
 
-    def _build_clipitem(self, prototype: TemplatePrototype, cue: SubtitleCue, ids: IdAllocator):
+    def _build_clipitem(
+        self,
+        prototype: TemplatePrototype,
+        cue: SubtitleCue,
+        ids: IdAllocator,
+    ) -> etree._Element:
         clipitem = copy.deepcopy(prototype.clipitem_node)
         start_frame = self._seconds_to_frame(cue.start_seconds, prototype.ticks_per_frame, round_up=False)
         end_frame = self._seconds_to_frame(cue.end_seconds, prototype.ticks_per_frame, round_up=True)
@@ -227,7 +240,10 @@ class ConversionService:
         graphic_effect = self._find_graphic_effect(clipitem)
         current_effect_name = graphic_effect.findtext("name") or ""
         normalized_text = normalize_premiere_text(display_text)
-        graphic_effect.find("name").text = normalized_text
+        effect_name_node = graphic_effect.find("name")
+        if effect_name_node is None:
+            raise ConversionError("模板中的 GraphicAndType effect 缺少 name 节点。")
+        effect_name_node.text = normalized_text
         for parameter in graphic_effect.findall("./parameter"):
             parameter_name = (parameter.findtext("name") or "").strip()
             if parameter_name != prototype.text_param_name:
@@ -240,7 +256,12 @@ class ConversionService:
 
         return clipitem
 
-    def _replace_prototype_clip(self, tree, prototype: TemplatePrototype, generated_clips: list) -> None:
+    def _replace_prototype_clip(
+        self,
+        tree: etree._ElementTree,
+        prototype: TemplatePrototype,
+        generated_clips: list[etree._Element],
+    ) -> None:
         track_node = prototype.track_node
         children = list(track_node)
         insertion_index = children.index(prototype.clipitem_node)
@@ -248,11 +269,17 @@ class ConversionService:
         for offset, clipitem in enumerate(generated_clips):
             track_node.insert(insertion_index + offset, clipitem)
 
-    def _update_sequence_duration(self, tree, generated_clips: list) -> int:
+    def _update_sequence_duration(
+        self,
+        tree: etree._ElementTree,
+        generated_clips: list[etree._Element],
+    ) -> int:
         if not generated_clips:
             raise ConversionError("没有生成任何字幕片段。")
 
         sequence = tree.getroot().find("./sequence")
+        if sequence is None:
+            raise ConversionError("XML 模板中缺少 sequence 节点。")
         sequence_duration_node = sequence.find("./duration")
         if sequence_duration_node is None:
             raise ConversionError("模板中的 sequence 缺少 duration 节点。")
@@ -263,7 +290,7 @@ class ConversionService:
         sequence_duration_node.text = str(updated_duration)
         return updated_duration
 
-    def _write_tree(self, tree, output_xml_path: str) -> None:
+    def _write_tree(self, tree: etree._ElementTree, output_xml_path: str) -> None:
         doctype = tree.docinfo.doctype or "<!DOCTYPE xmeml>"
         output_path = Path(output_xml_path)
         try:
@@ -278,7 +305,7 @@ class ConversionService:
         except OSError as exc:
             raise ConversionError(f"无法写入输出 XML 文件：{exc}") from exc
 
-    def _find_graphic_effect(self, clipitem_node):
+    def _find_graphic_effect(self, clipitem_node: etree._Element) -> etree._Element:
         for effect in clipitem_node.findall("./filter/effect"):
             if (effect.findtext("effectid") or "").strip() == "GraphicAndType":
                 return effect
@@ -296,7 +323,7 @@ class ConversionService:
         except ValueError:
             raise ConversionError(f"无法解析 XML 中的整数值：{value!r}")
 
-    def _set_child_text(self, parent, xpath: str, value: str) -> None:
+    def _set_child_text(self, parent: etree._Element, xpath: str, value: str) -> None:
         node = parent.find(f"./{xpath}")
         if node is not None:
             node.text = value

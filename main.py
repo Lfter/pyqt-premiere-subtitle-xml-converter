@@ -24,7 +24,7 @@ def _icon_candidates() -> list[Path]:
     ]
 
 
-def main():
+def main() -> None:
     app = QApplication(sys.argv)
     app.setApplicationName("srt_to_xml")
     app.setOrganizationName("ltzz")
