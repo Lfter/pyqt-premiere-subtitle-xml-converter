@@ -10,11 +10,17 @@ from ui.main_window import MainWindow
 def _icon_candidates() -> list[Path]:
     repo_root = Path(__file__).resolve().parent
     bundle_root = Path(getattr(sys, "_MEIPASS", repo_root))
+    packaging_assets_dir = Path("packaging") / "macos" / "assets"
+    legacy_assets_dir = Path("assets") / "macos"
     return [
-        bundle_root / "assets" / "macos" / "srt_to_xml.icns",
-        bundle_root / "assets" / "macos" / "srt_to_xml.png",
-        repo_root / "assets" / "macos" / "srt_to_xml.icns",
-        repo_root / "assets" / "macos" / "srt_to_xml.png",
+        bundle_root / packaging_assets_dir / "srt_to_xml.icns",
+        bundle_root / packaging_assets_dir / "srt_to_xml.png",
+        repo_root / packaging_assets_dir / "srt_to_xml.icns",
+        repo_root / packaging_assets_dir / "srt_to_xml.png",
+        bundle_root / legacy_assets_dir / "srt_to_xml.icns",
+        bundle_root / legacy_assets_dir / "srt_to_xml.png",
+        repo_root / legacy_assets_dir / "srt_to_xml.icns",
+        repo_root / legacy_assets_dir / "srt_to_xml.png",
     ]
 
 

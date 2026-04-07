@@ -6,8 +6,7 @@ from PIL import Image, ImageDraw, ImageFilter
 
 
 SIZE = 1024
-ROOT_DIR = Path(__file__).resolve().parents[1]
-ASSETS_DIR = ROOT_DIR / "assets" / "macos"
+ASSETS_DIR = Path(__file__).resolve().parent / "assets"
 MASTER_ICON_PATH = ASSETS_DIR / "srt_to_xml.png"
 
 

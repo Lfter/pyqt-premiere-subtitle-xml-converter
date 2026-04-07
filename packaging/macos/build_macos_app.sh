@@ -2,7 +2,8 @@
 
 set -euo pipefail
 
-ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
+PACKAGING_DIR="${ROOT_DIR}/packaging/macos"
 PYTHON_BIN="${PYTHON_BIN:-}"
 LOCAL_FRAMEWORK_ROOT="${ROOT_DIR}/.tools/python312"
 LOCAL_PYTHON_BIN="${LOCAL_FRAMEWORK_ROOT}/Python.framework/Versions/3.12/bin/python3.12"
@@ -62,13 +63,13 @@ VENV_PYINSTALLER="${ROOT_DIR}/.venv/bin/pyinstaller"
 
 "${VENV_PIP}" install --upgrade pip setuptools wheel
 "${VENV_PIP}" install -r requirements.txt -r requirements-build.txt
-"${VENV_PYTHON}" scripts/patch_pyinstaller_compat.py
+"${VENV_PYTHON}" "${PACKAGING_DIR}/patch_pyinstaller_compat.py"
 "${VENV_PYTEST}" -q
-"${VENV_PYTHON}" scripts/generate_icon.py
+"${VENV_PYTHON}" "${PACKAGING_DIR}/generate_icon.py"
 
-MASTER_ICON_PATH="${ROOT_DIR}/assets/macos/srt_to_xml.png"
-ICONSET_DIR="${ROOT_DIR}/assets/macos/srt_to_xml.iconset"
-ICNS_PATH="${ROOT_DIR}/assets/macos/srt_to_xml.icns"
+MASTER_ICON_PATH="${PACKAGING_DIR}/assets/srt_to_xml.png"
+ICONSET_DIR="${PACKAGING_DIR}/assets/srt_to_xml.iconset"
+ICNS_PATH="${PACKAGING_DIR}/assets/srt_to_xml.icns"
 
 mkdir -p "${ICONSET_DIR}"
 
@@ -79,6 +80,6 @@ for size in 16 32 128 256 512; do
 done
 
 iconutil -c icns "${ICONSET_DIR}" -o "${ICNS_PATH}"
-"${VENV_PYINSTALLER}" srt_to_xml.spec --noconfirm --clean
+"${VENV_PYINSTALLER}" "${PACKAGING_DIR}/srt_to_xml.spec" --noconfirm --clean
 
 echo "Built app: ${ROOT_DIR}/dist/srt_to_xml.app"

@@ -35,6 +35,8 @@ brew install python@3.12
 
 构建脚本也支持一个仓库内的备用运行时路径：`.tools/python312/Python.framework`。这主要用于系统级安装受限的情况。
 
+为了避免和其他平台打包内容混在一起，macOS 打包相关脚本、spec 和图标资产统一放在 `packaging/macos/`。
+
 ## 源码运行
 
 ```bash
@@ -73,12 +75,12 @@ brew install python@3.12
 - 创建或复用 `.venv`
 - 安装运行依赖和打包依赖
 - 运行测试
-- 生成 `assets/macos/srt_to_xml.png`
-- 生成 `assets/macos/srt_to_xml.icns`
+- 生成 `packaging/macos/assets/srt_to_xml.png`
+- 生成 `packaging/macos/assets/srt_to_xml.icns`
 - 输出 `dist/srt_to_xml.app`
 
 ```bash
-./scripts/build_macos_app.sh
+./packaging/macos/build_macos_app.sh
 ```
 
 如果你希望显式分步执行，也可以使用：
@@ -87,8 +89,8 @@ brew install python@3.12
 python3.12 -m venv .venv
 .venv/bin/pip install -r requirements.txt -r requirements-build.txt
 .venv/bin/pytest
-.venv/bin/python scripts/generate_icon.py
-.venv/bin/pyinstaller srt_to_xml.spec --noconfirm --clean
+.venv/bin/python packaging/macos/generate_icon.py
+.venv/bin/pyinstaller packaging/macos/srt_to_xml.spec --noconfirm --clean
 ```
 
 ## 产物说明

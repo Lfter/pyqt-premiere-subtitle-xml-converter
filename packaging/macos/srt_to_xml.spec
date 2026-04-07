@@ -5,9 +5,10 @@ from pathlib import Path
 from PyInstaller.utils.hooks import collect_dynamic_libs
 
 
-PROJECT_ROOT = Path(SPECPATH)
-ICON_PATH = PROJECT_ROOT / "assets" / "macos" / "srt_to_xml.icns"
-MASTER_ICON_PATH = PROJECT_ROOT / "assets" / "macos" / "srt_to_xml.png"
+PACKAGING_DIR = Path(SPECPATH)
+PROJECT_ROOT = PACKAGING_DIR.parent.parent
+ICON_PATH = PACKAGING_DIR / "assets" / "srt_to_xml.icns"
+MASTER_ICON_PATH = PACKAGING_DIR / "assets" / "srt_to_xml.png"
 LOCAL_PYTHON_LIB_DIR = PROJECT_ROOT / ".tools" / "python312" / "Python.framework" / "Versions" / "3.12" / "lib"
 
 binaries = collect_dynamic_libs("lxml")
@@ -16,13 +17,13 @@ for library_name in ("libssl.3.dylib", "libcrypto.3.dylib"):
     if library_path.is_file():
         binaries.append((str(library_path), "."))
 datas = [
-    (str(ICON_PATH), "assets/macos"),
-    (str(MASTER_ICON_PATH), "assets/macos"),
+    (str(ICON_PATH), "packaging/macos/assets"),
+    (str(MASTER_ICON_PATH), "packaging/macos/assets"),
 ]
 hiddenimports = ["PyQt5.sip"]
 
 a = Analysis(
-    ["main.py"],
+    [str(PROJECT_ROOT / "main.py")],
     pathex=[str(PROJECT_ROOT)],
     binaries=binaries,
     datas=datas,
